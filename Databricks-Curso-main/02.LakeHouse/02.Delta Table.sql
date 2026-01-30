@@ -44,8 +44,23 @@ DESCRIBE DETAIL vendas
 
 -- COMMAND ----------
 
+--DESCRIBE DETAIL Ver informações avançadas local , logs Arquivos de metadados etc
+DESCRIBE EXTENDED vendas
+
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC --Verificar Arquivos de Logs como informado em aula anterior
+
+-- COMMAND ----------
+
+DESCRIBE HISTORY workspace.default.vendas
+
+-- COMMAND ----------
+
+DESCRIBE EXTENDED workspace.default.vendas;
+
 
 -- COMMAND ----------
 
@@ -115,7 +130,8 @@ DESCRIBE HISTORY vendas
 -- COMMAND ----------
 
 --VERSION AS OF  ver uma versao da tabela 
-SELECT * FROM vendas VERSION AS OF 2
+SELECT * 
+FROM vendas VERSION AS OF 2
 
 -- COMMAND ----------
 
@@ -167,7 +183,7 @@ select * from vendas version as of 3
 
 -- COMMAND ----------
 
-select * from vendas TIMESTAMP AS OF '2024-10-24T01:25:01.000+00:00'
+select * from vendas TIMESTAMP AS OF '2026-01-30T19:04:30.000+00:00'
 
 -- COMMAND ----------
 
@@ -183,9 +199,17 @@ SELECT * FROM vendas
 
 -- COMMAND ----------
 
+DESCRIBE HISTORY vendas
+
+-- COMMAND ----------
+
 -- RESTAURAR DADOS - VERSÃO
 RESTORE TABLE vendas VERSION AS OF 4
 
 -- COMMAND ----------
 
 SELECT  * FROM vendas
+
+-- COMMAND ----------
+
+SELECT  * FROM vendas @v0
