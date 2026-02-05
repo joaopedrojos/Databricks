@@ -28,9 +28,7 @@ CREATE OR REPLACE TABLE vendas_pneus (
   qualidade STRING,
   estado STRING
 )
-PARTITIONED BY (estado)
-LOCATION '/mnt/logistica/vendas_pneus'
-;
+PARTITIONED BY (estado);
 
 -- COMMAND ----------
 
@@ -138,10 +136,8 @@ INSERT INTO logistica.vendas_pneus (id, modelo, data_producao, quantidade, quali
 
 -- Criando CTA add configurações 
 create or replace table logistica.cta_configuracoes_vendas_pneus
-
 COMMENT   'Cta de teste venda pneus'
 PARTITIONED BY (UF)
-LOCATION '/mnt/dados/logistica/cta_configuracoes_vendas_pneus'
 
 as 
 
@@ -306,4 +302,4 @@ SHOW TABLES IN global_temp
 
 -- insertt teste 
 INSERT INTO corridas.corridas_f1 (id, nome, piloto, local_corrida, data_corrida, vencedor) VALUES
-(1, 'Grande Prêmio do Bahrein', 'Charles Leclerc', 'Bahrein', '2024-03-05', 'Edmilson Alves')
+(33, 'TROPA', 'Charles Leclerc', 'Bahrein', '2024-03-05', 'Edmilson Alves')

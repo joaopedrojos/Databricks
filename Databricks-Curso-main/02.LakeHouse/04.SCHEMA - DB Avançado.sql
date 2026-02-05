@@ -80,7 +80,7 @@ INSERT INTO alunos_externo (id, nome, idade, curso) VALUES
 
 -- COMMAND ----------
 
-drop table alunos_externo;
+drop table producao_pneus;
 
 -- COMMAND ----------
 
@@ -104,7 +104,7 @@ CREATE SCHEMA IF NOT EXISTS producao;
 
 -- COMMAND ----------
 
-use producao; -- tudo que eu fizer abaixo vai refletir neste Banco de dados
+use schema producao; -- tudo que eu fizer abaixo vai refletir neste Banco de dados
 
 
 -- Criar a tabela com 5 colunas
@@ -126,12 +126,12 @@ INSERT INTO producao_pneus (id, modelo, data_producao, quantidade, qualidade) VA
 
 -- COMMAND ----------
 
-use producao;
+use schema producao;
 select * from producao_pneus;
 
 -- COMMAND ----------
 
-USE producao;
+USE schema producao;
 CREATE TABLE descartes_pneus (
   id INT,
   modelo STRING,
@@ -155,9 +155,7 @@ INSERT INTO descartes_pneus (id, modelo, data_descarte, quantidade, motivo) VALU
 -- COMMAND ----------
 
 -- Criando Schema Escolhendo local 
-CREATE SCHEMA IF NOT EXISTS loja
-LOCATION 'dbfs:/mnt/teste/lojaDB';
-
+CREATE SCHEMA IF NOT EXISTS loja;
 
 -- COMMAND ----------
 
@@ -169,8 +167,7 @@ CREATE TABLE IF NOT EXISTS produtos_esportivos (
   categoria STRING,
   data_producao DATE,
   quantidade_produzida INT
-)♣♣♦☺☻☺
-LOCATION 'dbfs:/mnt/teste/loja_tb_produtos_esportivos';
+);
 
 INSERT INTO produtos_esportivos (id, produto, categoria, data_producao, quantidade_produzida) VALUES
 (1, 'Bola de Futebol', 'Esportes Coletivos', '2024-01-01', 100),
@@ -189,8 +186,7 @@ CREATE TABLE IF NOT EXISTS clientes (
   email STRING,
   data_nascimento DATE,
   cidade STRING
-)
-LOCATION 'dbfs:/mnt/teste/loja_tb_clientes';
+);
 
 INSERT INTO clientes (id, nome, email, data_nascimento, cidade) VALUES
 (1, 'João Silva', 'joao.silva@example.com', '1990-01-15', 'São Paulo'),

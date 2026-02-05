@@ -26,8 +26,17 @@
 
 -- COMMAND ----------
 
+
+
+-- COMMAND ----------
+
+SELECT * FROM json.`/Volumes/workspace/default/arquivos-aula/Anac/V_OCORRENCIA_AMPLA.json`
+
+
+-- COMMAND ----------
+
 -- Exemplo Json
-SELECT * FROM json.`/path/file_name.json`
+SELECT * FROM json.`/Volumes/workspace/default/arquivos-aula/Anac/V_OCORRENCIA_AMPLA.json`
 
 -- Exemplo tipos
 SELECT * FROM (JSON, CSV,Parquet,TXT).`/path/to/file`
@@ -105,17 +114,17 @@ SELECT * FROM comparison_doc;
 -- COMMAND ----------
 
 -- query no Arquivo json
-select * from json.`dbfs:/databricks-datasets/iot/iot_devices.json`
+select * from json.`/Volumes/workspace/default/arquivos-aula/Anac/V_OCORRENCIA_AMPLA.json`
 
 -- COMMAND ----------
 
 -- Selecionando algumas colunas e fazendo filtro 
 select 
-  cn,
-  lcd,
-  scale
-from json.`dbfs:/databricks-datasets/iot/iot_devices.json`
-where lcd = "red"
+  Categoria_da_Aeronave,
+  Danos_a_Aeronave,
+  CLS
+from json.`/Volumes/workspace/default/arquivos-aula/Anac/V_OCORRENCIA_AMPLA.json`
+where CLS = "L2J"
 
 
 
@@ -194,9 +203,10 @@ select count(*) from csv.`dbfs:/databricks-datasets/bikeSharing/data-001/*.csv`
 
 -- opção read files read_files + Opções
 select * from read_files(
-    'dbfs:/databricks-datasets/bikeSharing/data-001/*.csv',
+  'dbfs:/databricks-datasets/bikeSharing/data-001/*.csv',
   format => 'csv',
-  header => true
+  header => true,
+  inferSchema => true
 )
 
 
@@ -214,10 +224,7 @@ select * from read_files(
 -- COMMAND ----------
 
 -- opção read files read_files + Opções + inferindo Schema manualmente
-select 
-  instant,
-  dteday,
-  season
+select *
 from 
 read_files(
     'dbfs:/databricks-datasets/bikeSharing/data-001/*.csv',

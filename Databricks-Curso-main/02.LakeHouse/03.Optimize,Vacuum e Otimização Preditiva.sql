@@ -142,12 +142,23 @@ select * from vendas
 -- COMMAND ----------
 
 --Outro comando para fazer a mesma ação - Desativar o padrao de 7 dias para Vacuum (Global)
-set spark.databricks.delta.retentionDurationCheck.enabled=false
+SET spark.databricks.delta.retentionDurationCheck.enabled = false;
+
+VACUUM vendas RETAIN 24 HOURS;
+
+
+-- COMMAND ----------
+
+DESCRIBE HISTORY vendas;
 
 -- COMMAND ----------
 
 -- MAGIC %fs
 -- MAGIC ls 'dbfs:/user/hive/warehouse/'
+
+-- COMMAND ----------
+
+SHOW TABLES IN workspace.default;
 
 -- COMMAND ----------
 
